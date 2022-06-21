@@ -22,6 +22,10 @@ public class OntimeToOntimeTicket implements CommandExecutor {
         if (sender instanceof Player){
             int pointsPerTicket = TradeOntime.getInstance().getConfig().getInt("PointsPerTicket");
             Player player = (Player) sender;
+            if (TradeOntime.getInstance().checkCoolTime(player.getUniqueId())) {
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cクールタイム中です。数秒程度時間を開けてもう一度試してください。"));
+                return true;
+            }
             String PlayerName = player.getName();
             Boolean UseCommandForOntime = TradeOntime.getInstance().getConfig().getBoolean("UseCommandForOntimeItem");
             String OntimeTicketGiveCommand = "minecraft:give " + PlayerName + " paper{display:{Name:'{\"text\":\"オンタイムチケット\",\"color\":\"green\"}',Lore:['{\"text\":\"ログインしていると一定時間ごとにもらえる。\",\"color\":\"white\"}','{\"text\":\"換金、特殊アイテムとの交換等に使える。\",\"color\":\"white\"}']},HideFlags:1,Enchantments:[{id:\"minecraft:unbreaking\",lvl:1s}]} ";

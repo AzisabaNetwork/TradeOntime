@@ -23,6 +23,10 @@ public class OntimeTicketToOntime implements CommandExecutor {
         //Executed by Player
         if (sender instanceof Player){
             Player player = (Player) sender;
+            if (TradeOntime.getInstance().checkCoolTime(player.getUniqueId())) {
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cクールタイム中です。数秒程度時間を開けてもう一度試してください。"));
+                return true;
+            }
 
 
             //Convert all ontime tickets in inventory to ontime points.
