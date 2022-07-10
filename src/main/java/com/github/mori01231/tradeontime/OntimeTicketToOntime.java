@@ -43,7 +43,7 @@ public class OntimeTicketToOntime implements CommandExecutor {
             //Convert ontime tickets in inventory to ontime points up until the given number.
             else{
                 try{
-                    if(Integer.valueOf(args[0]) < 0){
+                    if(Integer.parseInt(args[0]) < 0){
                         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&c&l変換するオンタイムチケットの枚数は正の整数で指定してください。"));
                         return true;
                     }
@@ -55,7 +55,7 @@ public class OntimeTicketToOntime implements CommandExecutor {
 
                 //Player has at least 1 ontime ticket in their inventory
                 if(OntimeTickets(player) > 0){
-                    Integer ConvertTickets = Integer.valueOf(args[0]);
+                    int ConvertTickets = Integer.parseInt(args[0]);
                     //Player doesn't have enough tickets
                     if (OntimeTickets(player) < ConvertTickets){
                         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&c&lオンタイムチケットが足りません。" + ConvertTickets + "枚以上のオンタイムチケットをインベントリに入れてください。"));
@@ -146,6 +146,8 @@ public class OntimeTicketToOntime implements CommandExecutor {
 
         //Create the message to be sent to the player
         String ReturnMessage = "&bオンタイムチケット" + tickets + "枚をオンタイムポイント" + points + "ポイントに変換しました。";
+
+        Bukkit.getConsoleSender().sendMessage(player.getName() + ": " + ChatColor.translateAlternateColorCodes('&', ReturnMessage));
 
         //Return the message to be sent to the player
         return ReturnMessage;
