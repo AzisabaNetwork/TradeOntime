@@ -1,7 +1,9 @@
 name: TradeOntime
-version: ${project.version}
+version: ${version}
 main: com.github.mori01231.tradeontime.TradeOntime
-description: Trade ontime for items
+description: ${description}
+api-version: '1.13'
+folia-supported: true
 depend: [PlayerPoints]
 
 commands:
